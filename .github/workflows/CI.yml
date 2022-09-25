@@ -1,0 +1,34 @@
+ name: CI
+ on: [push, pull_request]
+ jobs:
+  MainCI:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: install_system
+        run: |
+          sudo apt update
+          sudo apt install libgtest-dev
+          sudo apt install make
+          sudo apt install libgmock-dev
+          sudo apt install lcov
+          sudo apt install valgrind
+          sudo apt install cppcheck
+          sudo apt install clang-format
+          sudo apt install python
+          sudo pip install cpplint
+      - name: run_matrix
+        run: make -C ./Matrix
+      - name: save_artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name:
+          path:
+      - name: run_set
+        run: make -C ./Set
+      - name: save_artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name:
+          path:
