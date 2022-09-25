@@ -2,7 +2,9 @@
 #define __TASK1__
 
 #include <cstddef>
+#include <exception>
 #include <initializer_list>
+#include <stdexcept>
 
 class DoubleArray {
 private:
@@ -15,14 +17,22 @@ public:
   DoubleArray(DoubleArray &value);
   ~DoubleArray();
 
-  size_t size();
+  const size_t size() const;
 
   /* 1) */
   double &operator[](size_t index);
+  double &operator[](size_t index) const;
 
   /* 2) */
   DoubleArray(std::initializer_list<double> l);
 };
+
+bool operator==(const DoubleArray &lhs, const DoubleArray &rhs);
+
+/* 3) */
+const DoubleArray &operator+(const DoubleArray &lhs, const DoubleArray &rhs);
+const DoubleArray &operator-(const DoubleArray &lhs, const DoubleArray &rhs);
+const DoubleArray &operator*(const DoubleArray &lhs, const DoubleArray &rhs);
 
 class DoubleMatrix {
 private:
@@ -35,10 +45,11 @@ public:
   DoubleMatrix(DoubleMatrix &value);
   ~DoubleMatrix();
 
-  size_t size();
+  const size_t size() const;
 
   /* 1) */
   DoubleArray &operator[](size_t index);
+  DoubleArray &operator[](size_t index) const;
   DoubleArray get_row(size_t index);
   DoubleArray get_col(size_t index);
   DoubleArray get_main_diagonal();
@@ -47,5 +58,19 @@ public:
   /* 2) */
   DoubleMatrix(std::initializer_list<DoubleArray> l);
 };
+
+bool operator==(const DoubleMatrix &lhs, const DoubleMatrix &rhs);
+
+/* 3) */
+const DoubleMatrix &operator+(const DoubleMatrix &lhs, const DoubleMatrix &rhs);
+const DoubleMatrix &operator-(const DoubleMatrix &lhs, const DoubleMatrix &rhs);
+const DoubleMatrix &operator*(const DoubleMatrix &lhs, const DoubleMatrix &rhs);
+
+/* 4) */
+const DoubleMatrix &operator*(const double &lhs, const DoubleMatrix &rhs);
+const DoubleArray &operator*(const DoubleArray &lhs, const DoubleMatrix &rhs);
+const DoubleArray &operator*(const DoubleMatrix &lhs, const DoubleArray &rhs);
+const DoubleMatrix &matrix_bultiply(const DoubleMatrix &lhs,
+                                    const DoubleMatrix &rhs);
 
 #endif

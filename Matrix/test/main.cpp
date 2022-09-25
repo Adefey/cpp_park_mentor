@@ -27,5 +27,49 @@ https://github.com/dpilger26/NumCpp -1б;
 каждый пункт оценивается в 50% стоимости.
 */
 
-int main(int argc, char **argv) { return 0; }
+#include <gmock/gmock.h>
+#include <gtest/gtest.h>
+#include <iostream>
+#include <task1.hpp>
 
+TEST(VectorTest, EmptyConstructorTest) {
+  DoubleArray arr1;
+  DoubleArray arr2(0);
+  DoubleArray arr3 = arr1;
+  EXPECT_EQ(arr1, arr2);
+  EXPECT_EQ(arr2, arr3);
+  EXPECT_EQ(arr3, arr1);
+}
+
+TEST(VectorTest, MassiveConstructorTest) {
+  DoubleArray arr1 = {1.0, 2, 3, 4, 5, 6};
+  DoubleArray arr2(6);
+  DoubleArray arr3 = arr1;
+  EXPECT_EQ(arr1.size(), arr2.size());
+  EXPECT_EQ(arr2.size(), arr3.size());
+  EXPECT_EQ(arr3, arr1);
+}
+
+TEST(VectorTest, SetGetTest) {
+  DoubleArray arr1 = {1.0, 2, 3, 4, 5, 6};
+  DoubleArray arr2 = {1.0, 2, 9, 4, 5, 6};
+  DoubleArray arr3 = {1.0, 2, 5, 4, 5, 6};
+  arr1[2] = 9;
+  EXPECT_EQ(arr1[2], 9);
+  EXPECT_EQ(arr1, arr2);
+  EXPECT_EQ(arr1[2] - 4, arr3[2]);
+}
+
+TEST(VectorTest, AddTest) {
+  DoubleArray arr1 = {1.0, 2, 3, 4, 5, 6};
+  DoubleArray arr2 = {10.0, 20, 30, 40, 50, 60};
+  DoubleArray arr3 = {11.0, 22, 33, 44, 55, 66};
+  DoubleArray arr4(6);
+  arr4 = arr1 + arr2;
+  EXPECT_EQ(arr3, arr4);
+}
+
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}
