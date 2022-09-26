@@ -49,14 +49,20 @@ DoubleArray &DoubleMatrix::operator[](size_t index) const {
 }
 
 DoubleArray DoubleMatrix::get_row(size_t index) {
+  if (index >= _size) {
+    throw std::runtime_error("Index out of bounds");
+  }
   DoubleArray res(_values[index]);
   return res;
 }
 
 DoubleArray DoubleMatrix::get_col(size_t index) {
+  if (index >= _values[0].size()) {
+    throw std::runtime_error("Index out of bounds");
+  }
   DoubleArray res(_size);
   for (size_t i = 0; i < _size; ++i) {
-    res[i] = _values[index][i];
+    res[i] = _values[i][index];
   }
   return res;
 }

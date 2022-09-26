@@ -131,6 +131,37 @@ TEST(MatrixTest, SetGetTest) {
   EXPECT_EQ(mat1, mat2);
 }
 
+TEST(MatrixTest, GetRowTest) {
+  DoubleMatrix mat1 = {{1, 2}, {3, 4}, {5, 6}};
+  DoubleArray arr1 = mat1.get_row(0);
+  DoubleArray arr2 = {1, 2};
+  EXPECT_EQ(arr1, arr2);
+}
+
+TEST(MatrixTest, GetColTest) {
+  DoubleMatrix mat1 = {{1, 2}, {3, 4}, {5, 6}};
+  DoubleArray arr1 = mat1.get_col(0);
+  DoubleArray arr2 = {1, 3, 5};
+  for (size_t i = 0; i < arr1.size(); ++i) {
+    std::cout << arr1[i] << ' ';
+  }
+  EXPECT_EQ(arr1, arr2);
+}
+
+TEST(MatrixTest, GetMainDiagonalTest) {
+  DoubleMatrix mat1 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+  DoubleArray arr1 = mat1.get_main_diagonal();
+  DoubleArray arr2 = {1, 5, 9};
+  EXPECT_EQ(arr1, arr2);
+}
+
+TEST(MatrixTest, GetSideDiagonalTest) {
+  DoubleMatrix mat1 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+  DoubleArray arr1 = mat1.get_side_diagonal();
+  DoubleArray arr2 = {3, 5, 7};
+  EXPECT_EQ(arr1, arr2);
+}
+
 TEST(MatrixTest, AddTest) {
   DoubleMatrix mat1 = {{1, 2}, {3, 4}, {5, 6}};
   DoubleMatrix mat2 = {{2, 3}, {4, 5}, {6, 7}};
