@@ -223,6 +223,26 @@ TEST(MatrixTest, SubstractArrFromMatrixTest) {
   EXPECT_EQ(mat5, mat4);
 }
 
+TEST(MatrixTest, TransposeTest) {
+  DoubleMatrix mat1 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+  DoubleMatrix mat2 = {{1, 4, 7}, {2, 5, 8}, {3, 6, 9}};
+  DoubleMatrix mat3 = mat1.transpose();
+  EXPECT_EQ(mat2, mat3);
+}
+
+TEST(MatrixTest, InverseTest) {
+  DoubleMatrix mat1 = {{3, 4}, {5, 6}};
+  DoubleMatrix mat2 = {{-3, 2}, {2.5, -1.5}};
+  DoubleMatrix mat3 = mat1.inverse();
+  EXPECT_EQ(mat2, mat3);
+}
+
+TEST(MatrixTest, GetDeterminantTest) {
+  DoubleMatrix mat1 = {{3, 5, -2}, {1, -3, 2}, {6, 7, -3}};
+  double det = mat1.get_determinant();
+  EXPECT_EQ(det, 10);
+}
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

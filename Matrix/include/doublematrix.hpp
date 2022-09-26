@@ -12,6 +12,7 @@ class DoubleMatrix {
 private:
   DoubleArray *_values;
   size_t _size;
+  const DoubleMatrix get_minor(size_t row, size_t col);
 
 public:
   DoubleMatrix();
@@ -40,7 +41,7 @@ public:
   const DoubleMatrix transpose();
   const DoubleMatrix inverse();
 
-  /* 6) */
+  /* 7) */
   const double get_determinant();
 };
 

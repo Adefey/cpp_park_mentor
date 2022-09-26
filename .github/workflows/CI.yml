@@ -14,21 +14,13 @@
           sudo apt install libgmock-dev
           sudo apt install lcov
           sudo apt install valgrind
-          sudo apt install cppcheck
           sudo apt install clang-format
+          sudo apt install clang-tidy
           sudo apt install python
-          sudo pip install cpplint
       - name: run_matrix
         run: make -C ./Matrix
-      - name: save_artifact
+      - name: save coverage report
         uses: actions/upload-artifact@v3
         with:
-          name:
-          path:
-      - name: run_set
-        run: make -C ./Set
-      - name: save_artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name:
-          path:
+          name: report
+          path: ./test/

@@ -273,14 +273,59 @@ const DoubleMatrix substract_arr_from_matrix(DoubleMatrix &lhs,
 }
 
 const DoubleMatrix DoubleMatrix::transpose() {
-  DoubleMatrix res = *this;
+  DoubleMatrix res = DoubleMatrix(_values[0].size(), _size);
+  for (size_t i = 0; i < _size; ++i) {
+    for (size_t j = 0; j < _values[0].size(); ++j) {
+      res[j][i] = (*this)[i][j];
+    }
+  }
   return res;
 }
 const DoubleMatrix DoubleMatrix::inverse() {
-  DoubleMatrix res = *this;
+  if ((*this)[0].size() != (*this).size()) {
+    throw std::runtime_error("Dimensions have to be the same");
+  }
+  DoubleMatrix res = DoubleMatrix(_size, _size);
+  if ((*this).size() == 1) {
+    res[0][0] = (*this)[0][0];
+  } else if ((*this).size() == 2) {
+    double inv_det =
+        1 / ((*this)[0][0] * (*this)[1][1] - (*this)[0][1] * (*this)[1][0]);
+    res[0][0] = inv_det * (*this)[1][1];
+    res[0][1] = -inv_det * (*this)[0][1];
+    res[1][0] = -inv_det * (*this)[1][0];
+    res[1][1] = inv_det * (*this)[0][0];
+  } else if ((*this).size() == 3) {
+    throw std::runtime_error("Not implemented");
+  } else {
+    throw std::runtime_error("Not implemented");
+  }
   return res;
 }
-const double get_determinant() {
+
+const DoubleMatrix DoubleMatrix::get_minor(size_t row, size_t col) {
+  throw std::runtime_error("Not implemented");
+}
+
+const double DoubleMatrix::get_determinant() {
+  if ((*this)[0].size() != (*this).size()) {
+    throw std::runtime_error("Dimensions have to be the same");
+  }
   double res = 0;
+  size_t d = 1;
+  if ((*this).size() == 1) {
+    res = (*this)[0][0];
+  } else if ((*this).size() == 2) {
+    res = (*this)[0][0] * (*this)[1][1] - (*this)[1][0] * (*this)[0][1];
+  } else if ((*this).size() == 3) {
+    res = (*this)[0][0] * (*this)[1][1] * (*this)[2][2] +
+          (*this)[0][1] * (*this)[1][2] * (*this)[2][0] +
+          (*this)[0][2] * (*this)[1][0] * (*this)[2][1] -
+          (*this)[0][2] * (*this)[1][1] * (*this)[2][0] -
+          (*this)[0][1] * (*this)[1][0] * (*this)[2][2] -
+          (*this)[0][0] * (*this)[1][2] * (*this)[2][1];
+  } else {
+    throw std::runtime_error("Not implemented");
+  }
   return res;
 }
