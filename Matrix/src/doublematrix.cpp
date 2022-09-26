@@ -25,12 +25,7 @@ DoubleMatrix::DoubleMatrix(DoubleMatrix &value)
   }
 }
 
-DoubleMatrix::~DoubleMatrix() {
-  /*for (size_t i = 0; i < _size; ++i) {
-    delete &(_values[i]);
-  } */
-  delete[] _values;
-}
+DoubleMatrix::~DoubleMatrix() { delete[] _values; }
 
 const size_t DoubleMatrix::size() const { return _size; }
 

@@ -22,5 +22,6 @@ function check_log() {
 }
 
 print_header "RUN clang-format"
-check_log "clang-format -i -style=file ../include/* ../src/* ../test/*" "Can't open for reading"
+check_log "clang-format -i ./include/*.hpp ./src/*.cpp ./test/*.cpp" "Can't open for reading"
 
+print_header "SUCCESS"

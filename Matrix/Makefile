@@ -1,8 +1,8 @@
 all: prepare build_test run_test coverage_report clean
 
 prepare:
-	clang-format -i ./include/*.hpp ./src/*.cpp ./test/*.cpp
-	clang-tidy ./include/*.hpp ./src/*.cpp ./test/*.cpp -extra-arg=-std=c++2a -- -I./include
+	bash ./scripts/format.sh
+	bash ./scripts/check.sh
 
 build_test:
 	g++ -std=c++2a -Werror -I ./include -c ./src/doublearray.cpp  -o doublearray.o -lpthread -coverage -lgcov
