@@ -142,9 +142,6 @@ TEST(MatrixTest, GetColTest) {
   DoubleMatrix mat1 = {{1, 2}, {3, 4}, {5, 6}};
   DoubleArray arr1 = mat1.get_col(0);
   DoubleArray arr2 = {1, 3, 5};
-  for (size_t i = 0; i < arr1.size(); ++i) {
-    std::cout << arr1[i] << ' ';
-  }
   EXPECT_EQ(arr1, arr2);
 }
 
