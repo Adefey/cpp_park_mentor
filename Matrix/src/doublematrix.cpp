@@ -1,5 +1,4 @@
 #include <doublematrix.hpp>
-#include <iostream>
 
 DoubleMatrix::DoubleMatrix() : _values(nullptr), _size(0) {}
 

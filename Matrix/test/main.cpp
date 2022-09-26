@@ -31,7 +31,6 @@ https://github.com/dpilger26/NumCpp -1б;
 #include <doublematrix.hpp>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
-#include <iostream>
 
 TEST(VectorTest, EmptyConstructorTest) {
   DoubleArray arr1;

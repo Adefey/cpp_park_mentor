@@ -3,7 +3,7 @@
 DoubleArray::DoubleArray() : _values(nullptr), _size(0) {}
 
 DoubleArray::DoubleArray(const size_t size) : _values(nullptr), _size(size) {
-  _values = new double[size];
+  _values = new double[_size];
   for (size_t i = 0; i < _size; ++i) {
     _values[i] = 0;
   }
