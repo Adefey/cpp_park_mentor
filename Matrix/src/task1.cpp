@@ -61,14 +61,11 @@ const DoubleArray &operator+(const DoubleArray &lhs, const DoubleArray &rhs) {
   if (lhs.size() != rhs.size()) {
     throw std::runtime_error("Dimensions have to be the same");
   }
-  DoubleArray *res = new DoubleArray(lhs.size());
+  DoubleArray res = DoubleArray(lhs.size());
   for (size_t i = 0; i < lhs.size(); ++i) {
     res[i] = lhs[i] + rhs[i];
   }
-  for (size_t i = 0; i < lhs.size(); ++i) {
-    std::cout << (*res)[i] << "\t";
-  }
-  return *res;
+  return *(new DoubleArray(res));
 }
 
 const DoubleArray &operator-(const DoubleArray &lhs, const DoubleArray &rhs) {
