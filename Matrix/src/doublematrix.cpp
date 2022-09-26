@@ -88,13 +88,34 @@ DoubleMatrix::DoubleMatrix(
 }
 
 const DoubleMatrix DoubleMatrix::operator+=(const DoubleMatrix &rhs) {
-  return (*this = *this + rhs);
+  DoubleMatrix lhs = DoubleMatrix(*this);
+  DoubleMatrix res = lhs + rhs;
+  for (size_t i = 0; i < _size; ++i) {
+    for (size_t j = 0; j < _values[i].size(); ++j) {
+      _values[i][j] = res[i][j];
+    }
+  }
+  return *this;
 }
 const DoubleMatrix DoubleMatrix::operator-=(const DoubleMatrix &rhs) {
-  return (*this = *this - rhs);
+  DoubleMatrix lhs = DoubleMatrix(*this);
+  DoubleMatrix res = lhs - rhs;
+  for (size_t i = 0; i < _size; ++i) {
+    for (size_t j = 0; j < _values[i].size(); ++j) {
+      _values[i][j] = res[i][j];
+    }
+  }
+  return *this;
 }
 const DoubleMatrix DoubleMatrix::operator*=(const DoubleMatrix &rhs) {
-  return (*this = *this * rhs);
+  DoubleMatrix lhs = DoubleMatrix(*this);
+  DoubleMatrix res = lhs * rhs;
+  for (size_t i = 0; i < _size; ++i) {
+    for (size_t j = 0; j < _values[i].size(); ++j) {
+      _values[i][j] = res[i][j];
+    }
+  }
+  return *this;
 }
 
 bool operator==(const DoubleMatrix &lhs, const DoubleMatrix &rhs) {

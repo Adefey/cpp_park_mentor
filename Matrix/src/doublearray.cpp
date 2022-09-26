@@ -45,15 +45,30 @@ DoubleArray::DoubleArray(std::initializer_list<double> l) {
 }
 
 const DoubleArray DoubleArray::operator+=(const DoubleArray &rhs) {
-  return (*this = *this + rhs);
+  DoubleArray lhs = DoubleArray(*this);
+  DoubleArray res = lhs + rhs;
+  for (size_t i = 0; i < _size; ++i) {
+    _values[i] = res[i];
+  }
+  return *this;
 }
 
 const DoubleArray DoubleArray::operator-=(const DoubleArray &rhs) {
-  return (*this = *this - rhs);
+  DoubleArray lhs = DoubleArray(*this);
+  DoubleArray res = lhs - rhs;
+  for (size_t i = 0; i < _size; ++i) {
+    _values[i] = res[i];
+  }
+  return *this;
 }
 
 const DoubleArray DoubleArray::operator*=(const DoubleArray &rhs) {
-  return (*this = *this * rhs);
+  DoubleArray lhs = DoubleArray(*this);
+  DoubleArray res = lhs * rhs;
+  for (size_t i = 0; i < _size; ++i) {
+    _values[i] = res[i];
+  }
+  return *this;
 }
 
 bool operator==(const DoubleArray &lhs, const DoubleArray &rhs) {

@@ -68,6 +68,8 @@ TEST(VectorTest, AddTest) {
   DoubleArray arr3 = {11.0, 22, 33, 44, 55, 66};
   DoubleArray arr4 = arr1 + arr2;
   EXPECT_EQ(arr3, arr4);
+  arr1 += arr2;
+  EXPECT_EQ(arr1, arr4);
 }
 
 TEST(VectorTest, SubstractTest) {
@@ -76,6 +78,8 @@ TEST(VectorTest, SubstractTest) {
   DoubleArray arr3 = {-9.0, -18, -27, -36, -45, -54};
   DoubleArray arr4 = arr1 - arr2;
   EXPECT_EQ(arr3, arr4);
+  arr1 -= arr2;
+  EXPECT_EQ(arr1, arr4);
 }
 
 TEST(VectorTest, MultiplyTest) {
@@ -84,6 +88,8 @@ TEST(VectorTest, MultiplyTest) {
   DoubleArray arr3 = {10.0, 40, 90, 160, 250, 360};
   DoubleArray arr4 = arr1 * arr2;
   EXPECT_EQ(arr3, arr4);
+  arr1 *= arr2;
+  EXPECT_EQ(arr1, arr4);
 }
 
 TEST(VectorTest, AddDoubleTest) {
@@ -164,6 +170,8 @@ TEST(MatrixTest, AddTest) {
   DoubleMatrix mat3 = {{3, 5}, {7, 9}, {11, 13}};
   DoubleMatrix mat4 = mat1 + mat2;
   EXPECT_EQ(mat3, mat4);
+  mat1 += mat2;
+  EXPECT_EQ(mat1, mat4);
 }
 
 TEST(MatrixTest, SubstractTest) {
@@ -172,6 +180,8 @@ TEST(MatrixTest, SubstractTest) {
   DoubleMatrix mat3 = {{3, 5}, {7, 9}, {11, 13}};
   DoubleMatrix mat4 = mat3 - mat2;
   EXPECT_EQ(mat1, mat4);
+  mat3 -= mat2;
+  EXPECT_EQ(mat1, mat3);
 }
 
 TEST(MatrixTest, MultiplyTest) {
@@ -180,6 +190,8 @@ TEST(MatrixTest, MultiplyTest) {
   DoubleMatrix mat3 = {{2, 6}, {12, 20}, {30, 42}};
   DoubleMatrix mat4 = mat1 * mat2;
   EXPECT_EQ(mat3, mat4);
+  mat1 *= mat2;
+  EXPECT_EQ(mat1, mat4);
 }
 
 TEST(MatrixTest, DoubleMultMatrix) {
